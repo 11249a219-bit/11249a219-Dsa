@@ -1,12 +1,9 @@
 #include <stdio.h> 
 #include <stdlib.h> 
 #define V 5 
-  
-int minKey(int key[], int visited[]) 
-{ 
+int minKey(int key[], int visited[]) {
     int min = 999999; 
     int min_index = 0; 
- 
     for (int i = 0; i < V; i++) 
     { 
         if (!visited[i] && key[i] < min) 
@@ -17,14 +14,11 @@ int minKey(int key[], int visited[])
     } 
     return min_index; 
 } 
-void printPrimMST(int parent[], int graph[V][V]) 
-{ 
+void printPrimMST(int parent[], int graph[V][V]) {
     printf("\nPrim's MST:\n"); 
     printf("Edge \tWeight\n"); 
- 
     int total = 0; 
-    for (int i = 1; i < V; i++) 
-    { 
+    for (int i = 1; i < V; i++) {
         printf("%d - %d \t%d\n", parent[i], i, graph[i][parent[i]]); 
         total += graph[i][parent[i]];
  } 
@@ -35,15 +29,13 @@ void primMST(int graph[V][V])
     int parent[V];  
     int key[V];     
     int visited[V];
-    for (int i = 0; i < V; i++) 
-    { 
+    for (int i = 0; i < V; i++) {
         key[i] = 999999; 
         visited[i] = 0; 
     } 
     key[0] = 0; 
     parent[0] = -1; 
-    for (int count = 0; count < V - 1; count++) 
-    { 
+    for (int count = 0; count < V - 1; count++) {
         int u = minKey(key, visited); 
         visited[u] = 1; 
         for (int v = 0; v < V; v++) 
@@ -56,8 +48,7 @@ void primMST(int graph[V][V])
         } 
     } 
     printPrimMST(parent, graph); 
-} 
- 
+}
 int main() 
 { 
     int graph[V][V] = { 
