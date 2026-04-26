@@ -1,19 +1,27 @@
 #include<stdio.h>
-void TOH (int n,char s,char d,char a)
+// Function for Tower of Hanoi
+void TOH(int n, char s, char d, char a)
 {
-    if (n==1)
-{
-    printf("\n move %d from %c to %c",n,s,d);
-    return;
-    }
-    TOH(n-1,s,a,d);
-    printf("\n move %d from %c to %c\n",n,s,d);
-    TOH(n-1,a,d,s);
-    }
-    int main()
+    // Base condition: if only one disk
+    if (n == 1)
     {
-        int n;
-        printf("Enter the number of disks:");
-        scanf("%d",&n);
-        TOH(n,'s','d','a');
+        printf("\nMove disk %d from %c to %c", n, s, d);
+        return;
     }
+    // Move n-1 disks from source to auxiliary
+    TOH(n-1, s, a, d);
+    // Move the largest disk from source to destination
+    printf("\nMove disk %d from %c to %c", n, s, d);
+    // Move n-1 disks from auxiliary to destination
+    TOH(n-1, a, d, s);
+}
+int main()
+{
+    int n;
+    // Input number of disks
+    printf("Enter the number of disks: ");
+    scanf("%d", &n);
+    // Call TOH function
+    TOH(n, 'S', 'D', 'A');
+    return 0;  // End of program
+}
